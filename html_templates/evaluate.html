@@ -1,0 +1,25 @@
+<!Doctype html>
+<html>
+{{ template "header.html" .}}
+
+<body>
+    <div class="title">Headline▤Tracker</div>
+    <div class="subtitle">Showing articles for {{.Today}}<hr/></div>
+    {{ range $newsitem := .Articles }}
+      {{ template "article.html" .}}
+      {{ template "article_panel.html" .}}
+    {{- end }}
+
+    <script>
+        $(function() {
+
+            $("div.article_panel").on("click", function() {
+                var id = $(this).attr("id")
+                $(this).html(id)
+            });
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+a:any-link {
+    color: black;
+    text-decoration: none;
+}
+
+div.title {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 24px;
+    font-weight: bolder;
+    margin-bottom: 1px;
+    color: darkred;
+}
+
+div.subtitle {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+div.article {
+    margin-bottom: 30px;
+}
+
+div.headline {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    margin-bottom: 5px;
+    font-weight:900;
+}
+
+div.story {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+div.date {
+    font-family:'Courier New', Courier, monospace;
+    font-size: 8px;
+    color: lightslategray;
+}
+
+div.link {
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 8px;
+    color: lightslategray;
+}
+
+input[type=text] {
+    position: relative;
+    width: 80%;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: none;
+}
+
+input[type=text]:focus {
+    border: none;
+    outline: 0;
+}
+
+input[type=submit]{
+    position: relative;
+    width: 15%;
+    border:none;
+    outline: 0;
+}
+
+div.search {
+    box-shadow: 0 0 15px 4px rgba(0,0,0,0.06);
+    align-self: center;
+    padding: 0px;
+}
