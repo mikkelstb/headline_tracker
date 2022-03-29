@@ -35,6 +35,30 @@ func (r *SQLite) WriteSingle(a feed.NewsItem) (string, error) {
 	return "", nil
 }
 
+func (r *SQLite) GetArticles(nb_articles int) ([]feed.NewsItem, error) {
+	var articles []feed.NewsItem = make([]feed.NewsItem, 0, nb_articles)
+
+	rows, err := r.db.Query("select * from newsitem order by docdate desc limit ?", nb_articles)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	for rows.Next() {
+		var id, source, docdate, headline, story, url string
+		err := rows.Scan(&docdate, &id, &source, &headline, &story, &url)
+		if err != nil {
+			return nil, err
+		}
+		articles = append(articles, feed.NewsItem{Id: id, Docdate: docdate, Source: source, Headline: headline, Story: story, Url: url})
+	}
+	if rows.Err() != nil {
+		return nil, rows.Err()
+	}
+
+	return articles, nil
+}
+
 func (r *SQLite) Close() error {
 	return r.db.Close()
 }
