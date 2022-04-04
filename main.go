@@ -11,6 +11,7 @@ import (
 	"github.com/mikkelstb/feedfetcher/feed"
 )
 
+var config_file string
 var sq_config config.RepositoryConfig
 var db *SQLite
 
@@ -55,7 +56,6 @@ func listArticles(w http.ResponseWriter, r *http.Request) {
 	p.Title = "HeadlineTracker"
 	p.Today = time.Now().Format(time.ANSIC)
 	p.Articles = getLatestArticles(20)
-	p.SourceName = "test"
 
 	t, _ := template.ParseFiles(
 		"./html_templates/list.html",
