@@ -38,19 +38,19 @@ func (r *SQLite) WriteSingle(a feed.NewsItem) (string, error) {
 func (r *SQLite) GetArticles(nb_articles int) ([]feed.NewsItem, error) {
 	var articles []feed.NewsItem = make([]feed.NewsItem, 0, nb_articles)
 
-	rows, err := r.db.Query("select * from newsitem order by docdate desc limit ?", nb_articles)
+	rows, err := r.db.Query("select newsitem.docdate, newsitem.id, newsitem.headline, newsitem.story, newsitem.url, source.screen_name from newsitem left join source on newsitem.source=source.id order by docdate desc limit ?", nb_articles)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 
 	for rows.Next() {
-		var id, source, docdate, headline, story, url string
-		err := rows.Scan(&docdate, &id, &source, &headline, &story, &url)
+		var id, docdate, headline, story, url, source_name sql.NullString
+		err := rows.Scan(&docdate, &id, &headline, &story, &url, &source_name)
 		if err != nil {
 			return nil, err
 		}
-		articles = append(articles, feed.NewsItem{Id: id, Docdate: docdate, Source: source, Headline: headline, Story: story, Url: url})
+		articles = append(articles, feed.NewsItem{Id: id.String, Docdate: docdate.String, Source: source_name.String, Headline: headline.String, Story: story.String, Url: url.String})
 	}
 	if rows.Err() != nil {
 		return nil, rows.Err()

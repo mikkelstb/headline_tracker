@@ -54,7 +54,7 @@ func listArticles(w http.ResponseWriter, r *http.Request) {
 	var p Page
 	p.Title = "HeadlineTracker"
 	p.Today = time.Now().Format(time.ANSIC)
-	p.Articles = getLatestArticles(10)
+	p.Articles = getLatestArticles(20)
 	p.SourceName = "test"
 
 	t, _ := template.ParseFiles(
