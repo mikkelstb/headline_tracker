@@ -5,7 +5,8 @@ a:any-link {
 }
 
 div.mainList{
-    width: 500px;
+    max-width: 1080px; 
+    margin: 0 auto; 
 }
 
 div.title {
