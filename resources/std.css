@@ -1,6 +1,11 @@
+
 a:any-link {
     color: black;
     text-decoration: none;
+}
+
+div.mainList{
+    width: 500px;
 }
 
 div.title {

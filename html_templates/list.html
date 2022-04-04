@@ -1,11 +1,16 @@
 <!Doctype html>
 <html>
 {{ template "header.html" .}}
+
 <body>
-    <div class="title">Headline▤Tracker</div>
-    <div class="subtitle">Showing articles for {{.Today}}<hr/></div>
-    {{ range $newsitem := .Articles }}
-    {{ template "article.html" .}}
-    {{- end }}
+    <div class="mainList">
+        <div class="title">Headline▤Tracker</div>
+        <div class="subtitle">Showing articles for {{.Today}}
+            <hr />
+        </div>
+        {{ range $newsitem := .Articles }}
+        {{ template "article.html" .}}
+        {{- end }}
+    </div>
 </body>
 </html>
