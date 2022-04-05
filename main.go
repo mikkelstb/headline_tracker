@@ -61,6 +61,7 @@ func listArticles(w http.ResponseWriter, r *http.Request) {
 		"./html_templates/list.html",
 		"./html_templates/article.html",
 		"./html_templates/header.html",
+		"./html_templates/dropdown.html",
 	)
 	t.Execute(w, p)
 }

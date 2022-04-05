@@ -4,13 +4,17 @@
 
 <body>
     <div class="mainList">
-        <div class="title">Headline▤Tracker</div>
+        <div class="title">Headline ▤ Tracker</div>
         <div class="subtitle">Showing articles for {{.Today}}
             <hr />
         </div>
+
+        {{ template "dropdown.html" .}}
+
         {{ range $newsitem := .Articles }}
         {{ template "article.html" .}}
         {{- end }}
     </div>
 </body>
+
 </html>
