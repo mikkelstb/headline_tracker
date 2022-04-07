@@ -5,15 +5,15 @@
 <body>
     <div class="mainList">
         <div class="title">Headline ▤ Tracker</div>
-        <div class="subtitle">Showing articles for {{.Today}}
+        <div class="subtitle">Showing the latest articles
             <hr />
         </div>
-
-        {{ template "dropdown.html" .}}
+        {{ template "dropdown.html" .Languages}}
 
         {{ range $newsitem := .Articles }}
         {{ template "article.html" .}}
         {{- end }}
+        <hr>
     </div>
 </body>
 

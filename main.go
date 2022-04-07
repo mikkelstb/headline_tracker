@@ -40,7 +40,7 @@ func init() {
 
 func main() {
 	fmt.Println("Hello World")
-	getLatestArticles(10)
+	//getLatestArticles(10)
 
 	resources_fileserver := http.FileServer(http.Dir("./resources"))
 
@@ -52,10 +52,23 @@ func main() {
 
 func listArticles(w http.ResponseWriter, r *http.Request) {
 
+	err := r.ParseForm()
+	if err != nil {
+		w.WriteHeader(404)
+	}
+
+	languages, ok := r.Form["lang"]
+
+	if !ok {
+		languages = make([]string, 0)
+	}
+
 	var p Page
+	p.setChecked(languages)
+
 	p.Title = "HeadlineTracker"
 	p.Today = time.Now().Format(time.ANSIC)
-	p.Articles = getLatestArticles(20)
+	p.Articles = getLatestArticles(20, languages)
 
 	t, _ := template.ParseFiles(
 		"./html_templates/list.html",
@@ -63,15 +76,16 @@ func listArticles(w http.ResponseWriter, r *http.Request) {
 		"./html_templates/header.html",
 		"./html_templates/dropdown.html",
 	)
+
 	t.Execute(w, p)
 }
 
 // TODO: Skrive et skript som leser de 10 siste artikler fra databasefil sorteret på docdate
 
-func getLatestArticles(nb_articles int) []feed.NewsItem {
+func getLatestArticles(nb_articles int, languages []string) []feed.NewsItem {
 	var articles []feed.NewsItem
 
-	articles, err := db.GetArticles(nb_articles)
+	articles, err := db.GetArticles(nb_articles, languages)
 	if err != nil {
 		fmt.Println(err)
 		os.Exit(1)
