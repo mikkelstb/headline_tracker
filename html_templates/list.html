@@ -10,9 +10,11 @@
         </div>
         {{ template "dropdown.html" .Languages}}
 
+        <div class="article_list">
         {{ range $newsitem := .Articles }}
         {{ template "article.html" .}}
         {{- end }}
+        </div>
         <hr>
     </div>
 </body>

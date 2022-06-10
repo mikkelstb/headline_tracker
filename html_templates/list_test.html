@@ -1,0 +1,18 @@
+<!Doctype html>
+<html>
+{{ template "header.html" .}}
+
+<body>
+    <div class="mainList">
+        <div class="title">Headline ▤ Tracker</div>
+        <div class="subtitle">Showing the latest articles
+            <hr />
+        </div>
+        {{ template "dropdown.html" .Languages}}
+        <div class="article_list">
+        </div>
+        <hr>
+    </div>
+</body>
+
+</html>
