@@ -7,6 +7,7 @@ $(document).ready(function () {
 });
 
 // Toggle hide/visible when pressing the filter button
+// And call server for requested filters
 
 $(document).ready(function () {
     $("p").click(function () {
@@ -16,12 +17,16 @@ $(document).ready(function () {
             $("input:checkbox:checked").each(function() {
                 boxes.push($(this).attr("value"))
             })
-            $.post('/feed/', {"lang": boxes}, function(data) {
+
+            // Call /feed/
+            $.post('./feed/', {"lang": boxes}, function(data) {
+
+                //Change the 20 divs with new contents from feed
 
                 var articles = $("div.article", "div.article_list")
                 for (a in data) {
-                    new_headline = '<a href="' + data[a].url + '">▤ ' + data[a].headline + "/>"
-                    new_story = data[a].source + ": " + data[a].headline
+                    new_headline = '<a href="' + data[a].url + '">▤ ' + data[a].headline + "<a/>"
+                    new_story = data[a].source + ": " + data[a].story
                     new_publish_date = "Published: " + data[a].docdate
                     console.log(new_publish_date)
 
@@ -30,7 +35,7 @@ $(document).ready(function () {
                     articles.eq(a).find("div.story").html(new_story)
                     articles.eq(a).find("div.date").html(new_publish_date)
                 }
-            })
+            }, "application/json")
             //$("#filter").submit();
         } else {
             $("div.checkboxes").slideToggle();
