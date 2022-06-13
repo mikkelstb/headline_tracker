@@ -35,7 +35,7 @@ $(document).ready(function () {
                     articles.eq(a).find("div.story").html(new_story)
                     articles.eq(a).find("div.date").html(new_publish_date)
                 }
-            }, "application/json")
+            })
             //$("#filter").submit();
         } else {
             $("div.checkboxes").slideToggle();
