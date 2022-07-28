@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"net/http"
 	"os"
@@ -19,9 +20,15 @@ var db *SQLite
 func init() {
 
 	// To do: Make config relative
+	// cfg, err := config.Read("/Users/mikkel/feedfetcher/config.json")
+
+	flag.StringVar(&config_file, "config", "", "location of config file")
+	flag.Parse()
+
+	fmt.Printf("Reading config file: %s\n", config_file)
 
 	var err error
-	cfg, err := config.Read("/Users/mikkel/feedfetcher/config.json")
+	cfg, err := config.Read(config_file)
 	if err != nil {
 		fmt.Println(err.Error())
 		fmt.Println("error: config file not read, aborting")
