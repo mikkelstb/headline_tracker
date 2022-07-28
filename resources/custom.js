@@ -26,7 +26,7 @@ $(document).ready(function () {
                 var articles = $("div.article", "div.article_list")
                 for (a in data) {
                     new_headline = '<a href="' + data[a].url + '">▤ ' + data[a].headline + "<a/>"
-                    new_story = data[a].source + ": " + data[a].story
+                    new_story = "<b>" + data[a].source + ":</b> " + data[a].story
                     new_publish_date = "Published: " + data[a].docdate
                     console.log(new_publish_date)
 
